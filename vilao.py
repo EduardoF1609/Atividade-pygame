@@ -6,18 +6,25 @@ class Vilao(Personagem):
     Herda da classe Personagem.
     """
     def __init__(self, nome, idade, vida, maldade):
-        super().__init__(nome, idade, vida)
+        super().__init__(nome, idade, vida, ataque=25, defesa=8)
         niveis_validos = ['Baixa', 'Média', 'Alta']
         if maldade not in niveis_validos:
             raise ValueError(f"Nível de maldade inválido! Escolha entre {niveis_validos}")
         self.maldade = maldade
 
-    def ataque(self, personagem):
+    def atacar(self, personagem):
         """
         Reduz a vida de outro personagem atacado pelo vilão.
         """
-        print(f'{self.nome} atacou {personagem.nome}!')
-        personagem.downgrade_vida()
-
+        super().atacar(personagem)
+        
     def __str__(self):
-        return f'Vilão: {self.nome}, Idade: {self.idade}, Vida: {self.vida}, Maldade: {self.maldade}'
+        return (
+        f'Vilão: {self.nome}, '
+        f'Idade: {self.idade}, '
+        f'Vida: {self.vida}, '
+        f'Ataque: {self.ataque}, '
+        f'Defesa: {self.defesa}, '
+        f'Maldade: {self.maldade}'
+    )
+
